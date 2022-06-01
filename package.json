@@ -2,12 +2,14 @@
   "name": "memoryscheduling",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "element-plus": "^2.2.2",
     "vue": "^3.2.13"
   },
   "devDependencies": {
