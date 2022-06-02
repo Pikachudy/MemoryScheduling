@@ -1,8 +1,9 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header class="header">
-        <div><br />请求调页存储管理方式模拟</div>
+      <el-header class="header" height='90px'>
+         <p>请求调页存储管理方式模拟</p>
+         <el-button type="success" plain :disabled="this.exe_num == this.instruction_num" @click="exe_next">下一条指令</el-button>
       </el-header>
       <el-container>
         <el-aside class="aside">
@@ -28,9 +29,9 @@
                 <th>当前缺页率</th>
               </tr>
               <tr>
-                <td>320</td>
-                <td>20</td>
-                <td>{{ (20 / 320) * 100 + "%" }}</td>
+                <td>{{this.exe_num}}</td>
+                <td>{{this.page_miss}}</td>
+                <td>{{ MissRate }}</td>
               </tr>
             </table>
           </div>
@@ -64,6 +65,8 @@ export default {
   name: "PageShow",
   data() {
     return {
+      exe_num:0,//已执行条数
+      page_miss:0,//缺页数
       LRUlist: new linklist(),//LRU算法辅助链表
       exe_order:[],//指令执行顺序
 
@@ -91,6 +94,16 @@ export default {
         page_out: null, //被替换出的逻辑页
       },
     };
+  },
+  computed:{
+    MissRate(){
+      if(this.exe_num==0){
+        return 0 +'%';
+      }
+      else{
+        return this.page_miss/this.exe_num *100 +'%';
+      }
+    }
   },
   methods: {
     memory_init() {
@@ -145,6 +158,10 @@ export default {
                 return;
             }
         }
+    },
+    //执行下一条指令
+    exe_next(){
+      
     }
     
   },
@@ -156,6 +173,7 @@ export default {
     //生成指令序列
     this.order_init();
     console.log(this.exe_order.length);
+    console.log(this.LRUlist);
   },
 };
 </script>
@@ -175,8 +193,6 @@ export default {
 .memoryboard {
   margin-top: 10px;
   margin-bottom: 10px;
-}
-.buttonbox {
 }
 .buttonlabel {
   padding-right: 15px;

@@ -1,4 +1,4 @@
-export default class linklist {
+class linklist {
     constructor() {
         this.item = 0; //头结点显示当前列表长度
         this.next = null;
@@ -66,3 +66,5 @@ export default class linklist {
         this.item++;
     }
 }
+
+export default  linklist;
