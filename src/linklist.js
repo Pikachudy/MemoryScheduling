@@ -17,7 +17,7 @@ class linklist {
         cur_p.next.item = item;
         this.item++; //链表长度+1
     }
-    //删除链表末尾结点
+    //删除链表末尾结点——返回被删除的结点的内容
     deleteLast() {
         if (this.length() == 0) {
             return;
@@ -27,8 +27,10 @@ class linklist {
             cur_p = cur_p.next;
         }
         //此时到达倒数第二个结点
+        let item_delete=cur_p.next.item;
         cur_p.next = null;
         this.item--;
+        return item_delete;
     }
     //寻找元素是否在链表中，若存在则返回相应位置（头结点位置为0），若不存在则返回-1
     findIndex(item) {
