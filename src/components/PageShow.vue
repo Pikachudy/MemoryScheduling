@@ -175,7 +175,7 @@ export default {
         this.page_table.push({
           id: i, //逻辑页号
           valid: false, //是否有效——是否在内存中
-          memory_id: null, //是否
+          memory_id: null, //位于主存块号
         });
       }
     },
@@ -267,7 +267,6 @@ export default {
       let page = this.page_table[page_id]; //获取页表对应项
       if (page.valid == false) {
         this.instruct_record_update(insturction_id); //更新记录
-        console.log(111);
         //若页表不在内存中
         this.page_miss++;
         let cur_schedule = this.LRU(page); //利用LRU算法进行调度，返回调度信息
